@@ -10,20 +10,20 @@ module top(
     logic [$clog2(BLINK_INTERVAL) - 1:0] count = 0;
 
     initial begin
-        RGB_R = 1'b0;
-        RGB_G = 1'b0;
-        RGB_B = 1'b0;
+        RGB_R = 1'b1;
+        RGB_G = 1'b1;
+        RGB_B = 1'b1;
     end
 
-    localparam INITIAL = 3'b000;
-    localparam RED = 3'b100;
-    localparam YELLOW = 3'b110;
-    localparam GREEN = 3'b010;
-    localparam CYAN = 3'b011;
-    localparam BLUE = 3'b001;
-    localparam MAGENTA = 3'b101;
+    localparam INITIAL = 3'b111;
+    localparam RED = 3'b011;
+    localparam YELLOW = 3'b001;
+    localparam GREEN = 3'b101;
+    localparam CYAN = 3'b100;
+    localparam BLUE = 3'b110;
+    localparam MAGENTA = 3'b010;
 
-    logic [2:0] color = INITIAL;
+    logic [0:2] color = INITIAL;
 
     always_ff @(posedge clk) begin
         if (count == BLINK_INTERVAL - 1) begin
@@ -44,9 +44,9 @@ module top(
                 MAGENTA:
                     color <= RED;
             endcase
-            RGB_R <= color[2];
+            RGB_R <= color[0];
             RGB_G <= color[1];
-            RGB_B <= color[0];
+            RGB_B <= color[2];
         end
         else begin
             count <= count + 1;

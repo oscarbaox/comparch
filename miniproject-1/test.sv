@@ -1,7 +1,7 @@
 module top(
     input logic     clk, 
-    // output logic RGB_B,
-    // output logic RGB_G,
+    output logic RGB_B,
+    output logic RGB_G,
     output logic RGB_R
 );
 
@@ -11,20 +11,20 @@ module top(
 
     initial begin
         RGB_R = 1'b1;
-        RGB_G = 1'b0;
-        RGB_B = 1'b0;
+        RGB_G = 1'b1;
+        RGB_B = 1'b1;
     end
     
-    // localparam RED = 3'b100;
-    // logic [2:0] color = RED;
+    localparam RED = 3'b011;
+    logic [0:2] color = RED;
 
     always_ff @(posedge clk) begin
-        // RGB_R = color[0];
-        // RGB_G = color[1];
-        // RGB_B = color[2];
-        RGB_R = 1'b0;
-        // RGB_G = 1'b0;
-        // RGB_B = 1'b0;
+        RGB_R = color[0];
+        RGB_G = color[1];
+        RGB_B = color[2];
+        // RGB_R = 1'b0;
+        // RGB_G = 1'b1;
+        // RGB_B = 1'b1;
 
     end
 
